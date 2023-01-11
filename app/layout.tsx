@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Outfit } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
+import { AppProvider } from '@/contexts/AppContext';
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn('min-h-screen bg-background font-sans text-foreground antialiased', outfit.variable)}>
-        {children}
+        <AppProvider>
+          {children}
+        </AppProvider>
       </body>
     </html>
   );
