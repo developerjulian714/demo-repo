@@ -30,7 +30,7 @@ export default function Home() {
 
         {/* Overview Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-3xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 glass relative overflow-hidden group">
+          <div className="p-6 rounded-3xl bg-linear-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 glass relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:scale-110 transition-transform duration-500">
               <Wallet className="w-12 h-12 text-indigo-400" />
             </div>
@@ -39,7 +39,7 @@ export default function Home() {
             <p className="text-xs text-indigo-300/60 mt-4">+12.5% from last month</p>
           </div>
 
-          <div className="p-6 rounded-3xl bg-gradient-to-br from-pink-500/10 to-rose-500/10 border border-pink-500/20 glass relative overflow-hidden group">
+          <div className="p-6 rounded-3xl bg-linear-to-br from-pink-500/10 to-rose-500/10 border border-pink-500/20 glass relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:scale-110 transition-transform duration-500">
               <CreditCard className="w-12 h-12 text-pink-400" />
             </div>
@@ -48,7 +48,7 @@ export default function Home() {
             <p className="text-xs text-pink-300/60 mt-4">You owe ₹500</p>
           </div>
 
-          <div className="p-6 rounded-3xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 glass relative overflow-hidden group">
+          <div className="p-6 rounded-3xl bg-linear-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 glass relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:scale-110 transition-transform duration-500">
               <TrendingUp className="w-12 h-12 text-emerald-400" />
             </div>
