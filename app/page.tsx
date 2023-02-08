@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAppContext } from '@/contexts/AppContext';
 import { formatCurrency } from '@/lib/utils';
 import { cn } from '@/lib/utils';
@@ -115,34 +116,43 @@ export default function Home() {
           </div>
 
           <div className="space-y-4">
-            {expenses
-              .filter(e => !selectedCategory || e.category === selectedCategory)
-              .slice(0, 5)
-              .map((expense) => (
-                <div key={expense.id} className="p-4 rounded-2xl glass border border-white/5 flex items-center justify-between hover:bg-white/5 transition-colors cursor-pointer group">
-                  <div className="flex items-center gap-4">
-                    <div className="h-12 w-12 rounded-xl bg-gray-900/50 flex items-center justify-center text-2xl border border-white/10 group-hover:border-indigo-500/50 transition-colors">
-                      🛒
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <div className="flex items-center gap-2">
-                        <h4 className="font-medium text-white group-hover:text-emerald-300 transition-colors">{expense.description}</h4>
-                        {expense.isRecurring && (
-                          <span className="flex items-center gap-1 text-[8px] font-black bg-amber-500/10 text-amber-500 px-1.5 py-0.5 rounded-full border border-amber-500/20 uppercase tracking-tighter">
-                            <RefreshCw className="w-2 h-2" />
-                            Recurring
-                          </span>
-                        )}
+            <AnimatePresence mode="popLayout">
+              {expenses
+                .filter(e => !selectedCategory || e.category === selectedCategory)
+                .slice(0, 5)
+                .map((expense) => (
+                  <motion.div
+                    key={expense.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    className="p-4 rounded-2xl glass border border-white/5 flex items-center justify-between hover:bg-white/5 transition-colors cursor-pointer group"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="h-12 w-12 rounded-xl bg-gray-900/50 flex items-center justify-center text-2xl border border-white/10 group-hover:border-indigo-500/50 transition-colors">
+                        🛒
                       </div>
-                      <p className="text-xs text-muted-foreground">{expense.category} • {new Date(expense.date).toLocaleDateString()}</p>
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-2">
+                          <h4 className="font-medium text-white group-hover:text-emerald-300 transition-colors">{expense.description}</h4>
+                          {expense.isRecurring && (
+                            <span className="flex items-center gap-1 text-[8px] font-black bg-amber-500/10 text-amber-500 px-1.5 py-0.5 rounded-full border border-amber-500/20 uppercase tracking-tighter">
+                              <RefreshCw className="w-2 h-2" />
+                              Recurring
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-xs text-muted-foreground">{expense.category} • {new Date(expense.date).toLocaleDateString()}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-bold text-white mb-0.5">{formatCurrency(expense.amount)}</p>
-                    <p className="text-xs text-muted-foreground">Paid by {expense.paidBy === currentUser?.id ? 'You' : 'Others'}</p>
-                  </div>
-                </div>
-              ))}
+                    <div className="text-right">
+                      <p className="font-bold text-white text-lg">{formatCurrency(expense.amount)}</p>
+                      <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-black">by {expense.paidBy === currentUser?.id ? 'You' : 'Others'}</p>
+                    </div>
+                  </motion.div>
+                ))}
+            </AnimatePresence>
           </div>
         </section>
       </main>
