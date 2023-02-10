@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn('min-h-screen bg-background font-sans text-foreground antialiased', outfit.variable)}>
         <NextTopLoader
-          color="#6366f1"
+          color="#10b981"
           initialPosition={0.08}
           crawlSpeed={200}
           height={3}
@@ -32,7 +32,7 @@ export default function RootLayout({
           showSpinner={false}
           easing="ease"
           speed={200}
-          shadow="0 0 10px #6366f1,0 0 5px #6366f1"
+          shadow="0 0 10px #10b981,0 0 5px #10b981"
         />
         <AppProvider>
           {children}
