@@ -26,9 +26,9 @@ export default function ExpensesPage() {
                     <h1 className="text-3xl font-bold text-white">Expenses</h1>
                     <button
                         onClick={() => setIsAddModalOpen(true)}
-                        className="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-full flex items-center gap-2 font-medium transition-all shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(99,102,241,0.5)]"
+                        className="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-3 rounded-2xl flex items-center gap-2 font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] active:scale-95"
                     >
-                        <Plus className="w-5 h-5" />
+                        <Plus className="w-5 h-5 stroke-3" />
                         Add Expense
                     </button>
                 </div>
@@ -41,7 +41,7 @@ export default function ExpensesPage() {
                         placeholder="Search expenses..."
                         value={filter}
                         onChange={(e) => setFilter(e.target.value)}
-                        className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder:text-muted-foreground"
+                        className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:bg-white/10 transition-all placeholder:text-muted-foreground"
                     />
                 </div>
 
@@ -50,11 +50,11 @@ export default function ExpensesPage() {
                     {filteredExpenses.map((expense) => (
                         <div key={expense.id} className="p-4 rounded-2xl glass border border-white/5 flex items-center justify-between hover:bg-white/5 transition-colors group">
                             <div className="flex items-center gap-4">
-                                <div className="h-12 w-12 rounded-xl bg-gray-900/50 flex items-center justify-center text-2xl border border-white/10 group-hover:border-indigo-500/50 transition-colors">
+                                <div className="h-12 w-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-2xl border border-white/5 group-hover:border-emerald-500/30 transition-colors">
                                     🧾
                                 </div>
                                 <div>
-                                    <h4 className="font-medium text-white group-hover:text-indigo-300 transition-colors">{expense.description}</h4>
+                                    <h4 className="font-medium text-white group-hover:text-emerald-400 transition-colors">{expense.description}</h4>
                                     <p className="text-xs text-muted-foreground">{expense.category} • {new Date(expense.date).toLocaleDateString()} • by {expense.paidBy === currentUser?.id ? 'You' : 'Others'}</p>
                                 </div>
                             </div>
