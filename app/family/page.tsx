@@ -5,11 +5,11 @@ import { useAppContext } from '@/contexts/AppContext';
 import { Navbar } from '@/components/layout/Navbar';
 import { AddMemberModal } from '@/components/family/AddMemberModal';
 import { EditRoleModal } from '@/components/family/EditRoleModal';
-import { Plus, Shield, ShieldCheck, User as UserIcon, Settings as SettingsIcon } from 'lucide-react';
+import { Plus, Shield, ShieldCheck, User as UserIcon, Settings as SettingsIcon, Trash2 } from 'lucide-react';
 import { Member } from '@/types';
 
 export default function FamilyPage() {
-    const { activeFamily, currentUser, switchUser } = useAppContext();
+    const { activeFamily, currentUser, switchUser, families, setFamilies } = useAppContext() as any;
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [selectedMember, setSelectedMember] = useState<Member | null>(null);
@@ -56,16 +56,32 @@ export default function FamilyPage() {
                                     </span>
                                 }
                                 {currentUser?.role === 'ADMIN' && currentUser.id !== member.id && (
-                                    <button
-                                        onClick={() => {
-                                            setSelectedMember(member);
-                                            setIsEditModalOpen(true);
-                                        }}
-                                        className="p-2 rounded-xl bg-white/5 hover:bg-emerald-500/20 hover:text-emerald-400 transition-all border border-white/5"
-                                        title="Edit Role"
-                                    >
-                                        <SettingsIcon className="w-4 h-4" />
-                                    </button>
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            onClick={() => {
+                                                setSelectedMember(member);
+                                                setIsEditModalOpen(true);
+                                            }}
+                                            className="p-2 rounded-xl bg-white/5 hover:bg-emerald-500/20 hover:text-emerald-400 transition-all border border-white/5"
+                                            title="Edit Role"
+                                        >
+                                            <SettingsIcon className="w-4 h-4" />
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                if (confirm(`Remove ${member.name} from family?`)) {
+                                                    setFamilies((prev: any) => prev.map((fam: any) => ({
+                                                        ...fam,
+                                                        members: fam.members.filter((m: any) => m.id !== member.id)
+                                                    })));
+                                                }
+                                            }}
+                                            className="p-2 rounded-xl bg-white/5 hover:bg-rose-500/20 hover:text-rose-400 transition-all border border-white/5"
+                                            title="Remove Member"
+                                        >
+                                            <Trash2 className="w-4 h-4" />
+                                        </button>
+                                    </div>
                                 )}
                             </div>
 
