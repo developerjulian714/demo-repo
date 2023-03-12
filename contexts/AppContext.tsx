@@ -16,6 +16,7 @@ interface AppContextType {
     addExpense: (expense: Omit<Expense, 'id' | 'createdAt'>, splits: Expense['splits']) => void;
     addFamily: (name: string) => void;
     addMember: (familyId: string, name: string, role: Role) => void;
+    addBudget: (budget: Omit<Budget, 'id' | 'createdAt'>) => void;
     switchUser: (userId: string) => void;
     setActiveFamilyId: (familyId: string) => void;
 }
@@ -26,7 +27,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     // Persisted Users/Families
     const [families, setFamilies] = useLocalStorage<Family[]>('families', INITIAL_FAMILIES);
     const [expenses, setExpenses] = useLocalStorage<Expense[]>('expenses', INITIAL_EXPENSES);
-    const [budgets] = useLocalStorage<Budget[]>('budgets', INITIAL_BUDGETS);
+    const [budgets, setBudgets] = useLocalStorage<Budget[]>('budgets', INITIAL_BUDGETS);
 
     // Session State (not persisted necessarily, but good for navigation)
     const [activeFamilyId, setActiveFamilyIdState] = useLocalStorage<string>('activeFamilyId', INITIAL_FAMILIES[0].id);
@@ -93,6 +94,15 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         }));
     };
 
+    const addBudget = (budgetData: Omit<Budget, 'id' | 'createdAt'>) => {
+        const newBudget: Budget = {
+            ...budgetData,
+            id: `bud_${Date.now()}`,
+            createdAt: new Date().toISOString()
+        };
+        setBudgets(prev => [newBudget, ...prev]);
+    };
+
     const switchUser = (userId: string) => {
         setCurrentUserId(userId);
     };
@@ -124,6 +134,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
                 addExpense,
                 addFamily,
                 addMember,
+                addBudget,
                 switchUser,
                 setActiveFamilyId
             }}
