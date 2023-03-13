@@ -34,10 +34,10 @@ export default function FamilyPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {activeFamily.members.map((member) => (
                         <div key={member.id} className="p-6 rounded-3xl glass border border-white/5 hover:border-indigo-500/30 transition-all group relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <div className="absolute inset-0 bg-linear-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
                             <div className="relative flex items-center justify-between mb-4">
-                                <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xl font-bold text-white shadow-lg">
+                                <div className="h-14 w-14 rounded-2xl bg-linear-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xl font-bold text-white shadow-lg">
                                     {member.avatar}
                                 </div>
                                 {member.role === 'ADMIN' ?
