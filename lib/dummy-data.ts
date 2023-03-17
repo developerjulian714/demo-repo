@@ -85,13 +85,17 @@ export const INITIAL_BUDGETS: Budget[] = [
         familyId: 'fam_1',
         category: 'Groceries',
         limit: 15000,
-        month: new Date().toISOString().slice(0, 7), // Current month YYYY-MM
+        spent: 1540,
+        period: 'MONTHLY',
+        createdAt: new Date().toISOString(),
     },
     {
         id: 'bud_2',
         familyId: 'fam_1',
         category: 'Eating Out',
         limit: 5000,
-        month: new Date().toISOString().slice(0, 7),
+        spent: 1800,
+        period: 'MONTHLY',
+        createdAt: new Date().toISOString(),
     },
 ];
