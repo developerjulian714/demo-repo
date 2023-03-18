@@ -4,11 +4,15 @@ import { useState } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { Navbar } from '@/components/layout/Navbar';
 import { AddMemberModal } from '@/components/family/AddMemberModal';
-import { Plus, Shield, ShieldCheck, User as UserIcon } from 'lucide-react';
+import { EditRoleModal } from '@/components/family/EditRoleModal';
+import { Plus, Shield, ShieldCheck, User as UserIcon, Settings as SettingsIcon } from 'lucide-react';
+import { Member } from '@/types';
 
 export default function FamilyPage() {
     const { activeFamily, currentUser, switchUser } = useAppContext();
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [selectedMember, setSelectedMember] = useState<Member | null>(null);
 
     if (!activeFamily) return null;
 
@@ -51,6 +55,18 @@ export default function FamilyPage() {
                                         <UserIcon className="w-3 h-3" /> Member
                                     </span>
                                 }
+                                {currentUser?.role === 'ADMIN' && currentUser.id !== member.id && (
+                                    <button
+                                        onClick={() => {
+                                            setSelectedMember(member);
+                                            setIsEditModalOpen(true);
+                                        }}
+                                        className="p-2 rounded-xl bg-white/5 hover:bg-emerald-500/20 hover:text-emerald-400 transition-all border border-white/5"
+                                        title="Edit Role"
+                                    >
+                                        <SettingsIcon className="w-4 h-4" />
+                                    </button>
+                                )}
                             </div>
 
                             <div className="relative">
@@ -77,6 +93,14 @@ export default function FamilyPage() {
             </main>
 
             <AddMemberModal isOpen={isAddModalOpen} onClose={() => setIsAddModalOpen(false)} />
+            <EditRoleModal
+                isOpen={isEditModalOpen}
+                onClose={() => {
+                    setIsEditModalOpen(false);
+                    setSelectedMember(null);
+                }}
+                member={selectedMember}
+            />
         </div>
     );
 }
