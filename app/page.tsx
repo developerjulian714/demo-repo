@@ -1,13 +1,14 @@
-"use client";
-
+import { useState } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { formatCurrency } from '@/lib/utils';
 import { Navbar } from '@/components/layout/Navbar';
-import { TrendingUp, Wallet, CreditCard } from 'lucide-react';
+import { BudgetSetupModal } from '@/components/budgets/BudgetSetupModal';
+import { TrendingUp, Wallet, CreditCard, Plus } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
   const { expenses, budgets, currentUser } = useAppContext();
+  const [isBudgetModalOpen, setIsBudgetModalOpen] = useState(false);
 
   // Calculate stats
   const totalSpent = expenses.reduce((acc, curr) => acc + curr.amount, 0);
@@ -50,6 +51,13 @@ export default function Home() {
           </div>
 
           <div className="p-6 rounded-3xl bg-linear-to-br from-teal-500/10 to-emerald-950/10 border border-teal-500/20 glass relative overflow-hidden group">
+            <button
+              onClick={() => setIsBudgetModalOpen(true)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500 hover:text-white transition-all z-10"
+              title="Set Budget"
+            >
+              <Plus className="w-4 h-4" />
+            </button>
             <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:scale-110 transition-transform duration-500">
               <TrendingUp className="w-12 h-12 text-teal-400" />
             </div>
@@ -60,6 +68,8 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        <BudgetSetupModal isOpen={isBudgetModalOpen} onClose={() => setIsBudgetModalOpen(false)} />
 
         {/* Recent Activity */}
         <section>
