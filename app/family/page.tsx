@@ -22,13 +22,15 @@ export default function FamilyPage() {
                         <h1 className="text-3xl font-bold text-white mb-2">{activeFamily.name}</h1>
                         <p className="text-muted-foreground">Manage your family group and members.</p>
                     </div>
-                    <button
-                        onClick={() => setIsAddModalOpen(true)}
-                        className="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-3 rounded-2xl flex items-center gap-2 font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] active:scale-95"
-                    >
-                        <Plus className="w-5 h-5 stroke-3" />
-                        Add Member
-                    </button>
+                    {currentUser?.role === 'ADMIN' && (
+                        <button
+                            onClick={() => setIsAddModalOpen(true)}
+                            className="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-3 rounded-2xl flex items-center gap-2 font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] active:scale-95"
+                        >
+                            <Plus className="w-5 h-5 stroke-3" />
+                            Add Member
+                        </button>
+                    )}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
