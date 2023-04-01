@@ -3,6 +3,7 @@ import { useAppContext } from '@/contexts/AppContext';
 import { formatCurrency } from '@/lib/utils';
 import { Navbar } from '@/components/layout/Navbar';
 import { BudgetSetupModal } from '@/components/budgets/BudgetSetupModal';
+import { SpendingChart } from '@/components/insights/SpendingChart';
 import { TrendingUp, Wallet, CreditCard, Plus } from 'lucide-react';
 import Link from 'next/link';
 
