@@ -30,29 +30,29 @@ export default function Home() {
 
         {/* Overview Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-3xl bg-linear-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 glass relative overflow-hidden group">
+          <div className="p-6 rounded-3xl bg-linear-to-br from-emerald-500/10 to-emerald-900/10 border border-emerald-500/20 glass relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:scale-110 transition-transform duration-500">
-              <Wallet className="w-12 h-12 text-indigo-400" />
+              <Wallet className="w-12 h-12 text-emerald-400" />
             </div>
-            <p className="text-sm font-medium text-indigo-300">Total Spent</p>
+            <p className="text-sm font-medium text-emerald-300">Total Spent</p>
             <h3 className="text-4xl font-bold mt-2 text-white">{formatCurrency(totalSpent)}</h3>
-            <p className="text-xs text-indigo-300/60 mt-4">+12.5% from last month</p>
+            <p className="text-xs text-emerald-300/60 mt-4">+12.5% from last month</p>
           </div>
 
-          <div className="p-6 rounded-3xl bg-linear-to-br from-pink-500/10 to-rose-500/10 border border-pink-500/20 glass relative overflow-hidden group">
+          <div className="p-6 rounded-3xl bg-linear-to-br from-amber-500/10 to-amber-900/10 border border-amber-500/20 glass relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:scale-110 transition-transform duration-500">
-              <CreditCard className="w-12 h-12 text-pink-400" />
+              <CreditCard className="w-12 h-12 text-amber-400" />
             </div>
-            <p className="text-sm font-medium text-pink-300">My Share</p>
+            <p className="text-sm font-medium text-amber-300">My Share</p>
             <h3 className="text-4xl font-bold mt-2 text-white">{formatCurrency(mySpending)}</h3>
-            <p className="text-xs text-pink-300/60 mt-4">You owe ₹500</p>
+            <p className="text-xs text-amber-300/60 mt-4 tracking-wide font-medium">YOU OWE ₹500</p>
           </div>
 
-          <div className="p-6 rounded-3xl bg-linear-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 glass relative overflow-hidden group">
+          <div className="p-6 rounded-3xl bg-linear-to-br from-teal-500/10 to-emerald-950/10 border border-teal-500/20 glass relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:scale-110 transition-transform duration-500">
-              <TrendingUp className="w-12 h-12 text-emerald-400" />
+              <TrendingUp className="w-12 h-12 text-teal-400" />
             </div>
-            <p className="text-sm font-medium text-emerald-300">Budget Limit</p>
+            <p className="text-sm font-medium text-teal-300">Budget Limit</p>
             <h3 className="text-4xl font-bold mt-2 text-white">{formatCurrency(totalBudget)}</h3>
             <div className="w-full bg-emerald-950/50 h-1.5 rounded-full mt-4 overflow-hidden">
               <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${Math.min((totalSpent / totalBudget) * 100, 100)}%` }}></div>

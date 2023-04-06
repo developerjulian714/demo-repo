@@ -21,7 +21,7 @@ export function Navbar() {
         <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/5">
             <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                    <div className="h-8 w-8 rounded-lg bg-linear-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                    <div className="h-8 w-8 rounded-lg bg-linear-to-br from-emerald-500 to-emerald-700 flex items-center justify-center">
                         <span className="text-white font-bold text-xl">S</span>
                     </div>
                     <span className="text-lg font-bold bg-linear-to-r from-white to-white/60 bg-clip-text text-transparent">
@@ -40,7 +40,7 @@ export function Navbar() {
                                 className={cn(
                                     "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
                                     isActive
-                                        ? "bg-white/10 text-white shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                                        ? "bg-primary/20 text-primary shadow-[0_0_20px_rgba(16,185,129,0.1)]"
                                         : "text-muted-foreground hover:text-white hover:bg-white/5"
                                 )}
                             >
@@ -56,8 +56,8 @@ export function Navbar() {
                         <p className="text-sm font-medium text-white">{currentUser?.name}</p>
                         <p className="text-xs text-muted-foreground">{activeFamily?.name}</p>
                     </div>
-                    <div className="h-9 w-9 rounded-full bg-linear-to-br from-pink-500 to-rose-600 flex items-center justify-center shadow-lg ring-2 ring-white/10">
-                        <span className="text-xs text-white font-bold">
+                    <div className="h-9 w-9 rounded-full bg-linear-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-lg ring-2 ring-white/10">
+                        <span className="text-xs text-emerald-950 font-bold">
                             {currentUser?.avatar || 'U'}
                         </span>
                     </div>
