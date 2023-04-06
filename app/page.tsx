@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { formatCurrency } from '@/lib/utils';
