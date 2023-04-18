@@ -28,44 +28,48 @@ export function AddMemberModal({ isOpen, onClose }: AddMemberModalProps) {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-            <div className="w-full max-w-md bg-stone-900 border border-white/10 rounded-3xl p-6 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+            <div className="w-full max-w-md bg-stone-950 border border-emerald-500/20 rounded-4xl p-8 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative animate-in fade-in zoom-in-95 duration-200 glass">
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition-colors"
+                    className="absolute top-6 right-6 p-2 rounded-full hover:bg-white/5 transition-colors group"
                 >
-                    <X className="w-5 h-5 text-muted-foreground" />
+                    <X className="w-5 h-5 text-muted-foreground group-hover:text-white" />
                 </button>
 
-                <h2 className="text-2xl font-bold text-white mb-6">Add Family Member</h2>
+                <h2 className="text-2xl font-bold text-white mb-8 tracking-tight">Add Family Member</h2>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium text-muted-foreground">Name</label>
+                <form onSubmit={handleSubmit} className="space-y-8">
+                    <div className="space-y-3">
+                        <label className="text-xs font-semibold text-emerald-500/70 uppercase tracking-widest ml-1">Name</label>
                         <input
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder:text-muted-foreground"
+                            className="w-full bg-white/5 border border-white/5 rounded-2xl h-14 px-5 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:bg-white/10 transition-all placeholder:text-white/10"
                             placeholder="Enter name"
                             autoFocus
                         />
                     </div>
 
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium text-muted-foreground">Role</label>
-                        <div className="flex bg-white/5 p-1 rounded-xl">
+                    <div className="space-y-3">
+                        <label className="text-xs font-semibold text-emerald-500/70 uppercase tracking-widest ml-1">Role</label>
+                        <div className="flex bg-white/5 p-1.5 rounded-2xl border border-white/5">
                             <button
                                 type="button"
                                 onClick={() => setRole('MEMBER')}
-                                className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${role === 'MEMBER' ? 'bg-indigo-600 text-white shadow-lg' : 'text-muted-foreground hover:text-white'}`}
+                                className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-300 ${role === 'MEMBER'
+                                    ? 'bg-emerald-600 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)] scale-[1.02]'
+                                    : 'text-muted-foreground hover:text-white hover:bg-white/5'}`}
                             >
                                 Member
                             </button>
                             <button
                                 type="button"
                                 onClick={() => setRole('ADMIN')}
-                                className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${role === 'ADMIN' ? 'bg-indigo-600 text-white shadow-lg' : 'text-muted-foreground hover:text-white'}`}
+                                className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-300 ${role === 'ADMIN'
+                                    ? 'bg-emerald-600 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)] scale-[1.02]'
+                                    : 'text-muted-foreground hover:text-white hover:bg-white/5'}`}
                             >
                                 Admin
                             </button>
@@ -74,9 +78,9 @@ export function AddMemberModal({ isOpen, onClose }: AddMemberModalProps) {
 
                     <button
                         type="submit"
-                        className="w-full bg-white text-black font-bold py-4 rounded-2xl hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+                        className="w-full bg-linear-to-r from-emerald-500 to-emerald-600 text-emerald-950 font-black h-16 rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_4px_20px_rgba(16,185,129,0.4)] flex items-center justify-center gap-2 text-lg"
                     >
-                        <UserPlus className="w-5 h-5" />
+                        <UserPlus className="w-6 h-6 stroke-3" />
                         Add Member
                     </button>
                 </form>
