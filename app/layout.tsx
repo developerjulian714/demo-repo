@@ -3,6 +3,8 @@ import { Outfit } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { AppProvider } from '@/contexts/AppContext';
+import { ToastProvider } from '@/contexts/ToastContext';
+import { ToastContainer } from '@/components/ui/Toast';
 import NextTopLoader from 'nextjs-toploader';
 
 const outfit = Outfit({
@@ -35,7 +37,10 @@ export default function RootLayout({
           shadow="0 0 10px #10b981,0 0 5px #10b981"
         />
         <AppProvider>
-          {children}
+          <ToastProvider>
+            {children}
+            <ToastContainer />
+          </ToastProvider>
         </AppProvider>
       </body>
     </html>
