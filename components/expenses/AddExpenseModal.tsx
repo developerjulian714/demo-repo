@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
-import { X, Check } from 'lucide-react';
+import { useToast } from '@/contexts/ToastContext';
+import { X, Receipt } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Role } from '@/types';
 
@@ -13,6 +14,7 @@ interface AddExpenseModalProps {
 
 export function AddExpenseModal({ isOpen, onClose }: AddExpenseModalProps) {
     const { addExpense, activeFamily, currentUser } = useAppContext();
+    const { showToast } = useToast();
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('Groceries');
