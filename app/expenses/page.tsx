@@ -6,7 +6,7 @@ import { formatCurrency } from '@/lib/utils';
 import { Navbar } from '@/components/layout/Navbar';
 import { AddExpenseModal } from '@/components/expenses/AddExpenseModal';
 import { useToast } from '@/contexts/ToastContext';
-import { Plus, Search, Filter, RefreshCw, FileText } from 'lucide-react';
+import { Plus, Search, Filter, RefreshCw, FileText, FileSpreadsheet } from 'lucide-react';
 
 export default function ExpensesPage() {
     const { expenses, currentUser } = useAppContext();
@@ -35,7 +35,14 @@ export default function ExpensesPage() {
                             className="bg-white/5 border border-white/10 text-white h-12 px-6 rounded-xl font-bold hover:bg-white/10 transition-all flex items-center gap-2"
                         >
                             <FileText className="w-4 h-4" />
-                            Download PDF
+                            PDF
+                        </button>
+                        <button
+                            onClick={() => showToast('Exporting to Excel... 📊', 'INFO')}
+                            className="bg-white/5 border border-white/10 text-white h-12 px-6 rounded-xl font-bold hover:bg-white/10 transition-all flex items-center gap-2"
+                        >
+                            <FileSpreadsheet className="w-4 h-4" />
+                            Excel
                         </button>
                         <button
                             onClick={() => setIsAddModalOpen(true)}
