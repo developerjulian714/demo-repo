@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
-import { X, Check, UserPlus } from 'lucide-react';
+import { useToast } from '@/contexts/ToastContext';
+import { X, UserPlus, Shield, User } from 'lucide-react';
 import { Role } from '@/types';
 
 interface AddMemberModalProps {
@@ -12,6 +13,7 @@ interface AddMemberModalProps {
 
 export function AddMemberModal({ isOpen, onClose }: AddMemberModalProps) {
     const { addMember, activeFamily } = useAppContext();
+    const { showToast } = useToast();
     const [name, setName] = useState('');
     const [role, setRole] = useState<Role>('MEMBER');
 
@@ -22,6 +24,7 @@ export function AddMemberModal({ isOpen, onClose }: AddMemberModalProps) {
         if (!name || !activeFamily) return;
 
         addMember(activeFamily.id, name, role);
+        showToast(`Welcome ${name} to the family! 👋`, 'SUCCESS');
         onClose();
         setName('');
         setRole('MEMBER');
