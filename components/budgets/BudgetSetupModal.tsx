@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
+import { useToast } from '@/contexts/ToastContext';
 import { X, Check, Target } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -12,6 +13,7 @@ interface BudgetSetupModalProps {
 
 export function BudgetSetupModal({ isOpen, onClose }: BudgetSetupModalProps) {
     const { addBudget, activeFamily } = useAppContext();
+    const { showToast } = useToast();
     const [category, setCategory] = useState('');
     const [limit, setLimit] = useState('');
 
@@ -30,6 +32,7 @@ export function BudgetSetupModal({ isOpen, onClose }: BudgetSetupModalProps) {
             period: 'MONTHLY'
         });
 
+        showToast(`${category} budget set to ₹${numLimit}! 🎯`, 'SUCCESS');
         onClose();
         setCategory('');
         setLimit('');
