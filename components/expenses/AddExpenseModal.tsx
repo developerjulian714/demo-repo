@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { useToast } from '@/contexts/ToastContext';
-import { X, Check, Receipt } from 'lucide-react';
+import { X, Check, Receipt, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Role } from '@/types';
 
@@ -89,13 +89,26 @@ export function AddExpenseModal({ isOpen, onClose }: AddExpenseModalProps) {
                     </div>
 
                     <div className="space-y-3">
-                        <label className="text-xs font-semibold text-emerald-500/70 uppercase tracking-widest ml-1">Description</label>
+                        <div className="flex items-center justify-between ml-1">
+                            <label className="text-xs font-semibold text-emerald-500/70 uppercase tracking-widest">Category</label>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setCategory('Groceries'); // Mock AI logic
+                                    showToast('AI suggests: Groceries 🧠', 'INFO');
+                                }}
+                                className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-tighter text-amber-500 bg-amber-500/10 px-2 py-1 rounded-lg border border-amber-500/20 hover:bg-amber-500/20 transition-all active:scale-95"
+                            >
+                                <Sparkles className="w-3 h-3" />
+                                AI Categorize
+                            </button>
+                        </div>
                         <input
                             type="text"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
                             className="w-full bg-white/5 border border-white/5 rounded-2xl h-14 px-5 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:bg-white/10 transition-all"
-                            placeholder="What was this for?"
+                            placeholder="What category is this?"
                         />
                     </div>
 
