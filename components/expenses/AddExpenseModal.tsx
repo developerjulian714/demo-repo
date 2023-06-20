@@ -101,6 +101,8 @@ export function AddExpenseModal({ isOpen, onClose }: AddExpenseModalProps) {
                                     }
                                     const suggested = suggestCategory(description);
                                     setCategory(suggested);
+                                    setIsSparkling(true);
+                                    setTimeout(() => setIsSparkling(false), 500);
                                     showToast(`AI suggests: ${suggested} 🧠`, 'INFO');
                                 }}
                                 className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-tighter text-amber-500 bg-amber-500/10 px-2 py-1 rounded-lg border border-amber-500/20 hover:bg-amber-500/20 transition-all active:scale-95"
@@ -113,7 +115,10 @@ export function AddExpenseModal({ isOpen, onClose }: AddExpenseModalProps) {
                             type="text"
                             value={category}
                             onChange={(e) => setCategory(e.target.value)}
-                            className="w-full bg-white/5 border border-white/5 rounded-2xl h-14 px-5 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:bg-white/10 transition-all"
+                            className={cn(
+                                "w-full bg-white/5 border border-white/5 rounded-2xl h-14 px-5 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:bg-white/10 transition-all",
+                                isSparkling && "animate-sparkle border-amber-500/50"
+                            )}
                             placeholder="What category is this?"
                         />
                     </div>
