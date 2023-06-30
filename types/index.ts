@@ -35,6 +35,7 @@ export interface Expense {
     splits: Split[];
     familyId: string;
     createdAt: string;
+    isRecurring?: boolean;
 }
 
 export interface Budget {
