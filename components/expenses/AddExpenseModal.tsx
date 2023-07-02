@@ -22,6 +22,7 @@ export function AddExpenseModal({ isOpen, onClose }: AddExpenseModalProps) {
     const [splitType, setSplitType] = useState<'EQUAL' | 'CUSTOM'>('EQUAL');
     const [splits, setSplits] = useState<{ [userId: string]: string }>({});
     const [isSparkling, setIsSparkling] = useState(false);
+    const [isRecurring, setIsRecurring] = useState(false);
 
     if (!isOpen) return null;
 
