@@ -125,33 +125,39 @@ export function AddExpenseModal({ isOpen, onClose }: AddExpenseModalProps) {
                     </div>
 
                     <div className="space-y-3">
-                        <label className="text-xs font-semibold text-emerald-500/70 uppercase tracking-widest ml-1">Split Type</label>
-                        <div className="flex bg-white/5 p-1.5 rounded-2xl border border-white/5">
-                            <button
-                                type="button"
-                                onClick={() => setSplitType('EQUAL')}
-                                className={cn(
-                                    "flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-300",
-                                    splitType === 'EQUAL'
-                                        ? "bg-emerald-600 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)] scale-[1.02]"
-                                        : "text-muted-foreground hover:text-white hover:bg-white/5"
-                                )}
-                            >
-                                Equally
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => setSplitType('CUSTOM')}
-                                className={cn(
-                                    "flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-300",
-                                    splitType === 'CUSTOM'
-                                        ? "bg-emerald-600 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)] scale-[1.02]"
-                                        : "text-muted-foreground hover:text-white hover:bg-white/5"
-                                )}
-                            >
-                                Custom
-                            </button>
-                        </div>
+                        <label className="text-xs font-semibold text-emerald-500/70 uppercase tracking-widest ml-1 flex items-center gap-2">
+                            <span className="flex-1">Recurring Expense?</span>
+                            <span className={cn(
+                                "text-[9px] px-1.5 py-0.5 rounded-full",
+                                isRecurring ? "bg-amber-500/20 text-amber-500" : "bg-white/5 text-muted-foreground"
+                            )}>
+                                {isRecurring ? 'YES' : 'NO'}
+                            </span>
+                        </label>
+                        <button
+                            type="button"
+                            onClick={() => setIsRecurring(!isRecurring)}
+                            className={cn(
+                                "w-full flex items-center justify-between px-5 h-14 rounded-2xl border transition-all duration-300",
+                                isRecurring
+                                    ? "bg-amber-500/10 border-amber-500/40 text-amber-400"
+                                    : "bg-white/5 border-white/5 text-muted-foreground hover:border-white/10"
+                            )}
+                        >
+                            <div className="flex items-center gap-3">
+                                <RefreshCw className={cn("w-5 h-5", isRecurring && "animate-spin-slow")} />
+                                <span className="font-bold">Monthly Auto-split</span>
+                            </div>
+                            <div className={cn(
+                                "w-10 h-5 rounded-full relative transition-colors duration-300",
+                                isRecurring ? "bg-amber-500" : "bg-white/10"
+                            )}>
+                                <div className={cn(
+                                    "absolute top-1 w-3 h-3 bg-white rounded-full transition-all duration-300",
+                                    isRecurring ? "right-1" : "left-1"
+                                )} />
+                            </div>
+                        </button>
                     </div>
 
                     <button
