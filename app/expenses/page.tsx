@@ -5,7 +5,7 @@ import { useAppContext } from '@/contexts/AppContext';
 import { formatCurrency } from '@/lib/utils';
 import { Navbar } from '@/components/layout/Navbar';
 import { AddExpenseModal } from '@/components/expenses/AddExpenseModal';
-import { Plus, Search, Filter } from 'lucide-react';
+import { Plus, Search, Filter, RefreshCw } from 'lucide-react';
 
 export default function ExpensesPage() {
     const { expenses, currentUser } = useAppContext();
@@ -54,7 +54,15 @@ export default function ExpensesPage() {
                                     🧾
                                 </div>
                                 <div>
-                                    <h4 className="font-medium text-white group-hover:text-emerald-400 transition-colors">{expense.description}</h4>
+                                    <div className="flex items-center gap-2">
+                                        <h4 className="font-medium text-white group-hover:text-emerald-300 transition-colors">{expense.description}</h4>
+                                        {expense.isRecurring && (
+                                            <span className="flex items-center gap-1 text-[9px] font-black bg-amber-500/10 text-amber-500 px-1.5 py-0.5 rounded-full border border-amber-500/20 uppercase tracking-tighter">
+                                                <RefreshCw className="w-2.5 h-2.5" />
+                                                Recurring
+                                            </span>
+                                        )}
+                                    </div>
                                     <p className="text-xs text-muted-foreground">{expense.category} • {new Date(expense.date).toLocaleDateString()} • by {expense.paidBy === currentUser?.id ? 'You' : 'Others'}</p>
                                 </div>
                             </div>
