@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { useToast } from '@/contexts/ToastContext';
 import { suggestCategory } from '@/lib/ai-service';
-import { X, Check, Receipt, Sparkles } from 'lucide-react';
+import { X, Check, Receipt, Sparkles, RefreshCw } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Role } from '@/types';
 
