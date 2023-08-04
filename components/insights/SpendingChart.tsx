@@ -12,6 +12,7 @@ import {
     Cell
 } from 'recharts';
 import { Budget, Expense } from '@/types';
+import { cn } from '@/lib/utils';
 
 interface SpendingChartProps {
     budgets: Budget[];
