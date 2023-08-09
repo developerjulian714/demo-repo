@@ -21,6 +21,7 @@ export function AddExpenseModal({ isOpen, onClose }: AddExpenseModalProps) {
     const [category, setCategory] = useState('Groceries');
     const [splitType, setSplitType] = useState<'EQUAL' | 'CUSTOM'>('EQUAL');
     const [splits, setSplits] = useState<{ [userId: string]: string }>({});
+    const [isSparkling, setIsSparkling] = useState(false);
 
     if (!isOpen) return null;
 
