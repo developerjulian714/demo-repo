@@ -10,6 +10,7 @@ import { Plus, Search, Filter, RefreshCw, FileText } from 'lucide-react';
 
 export default function ExpensesPage() {
     const { expenses, currentUser } = useAppContext();
+    const { showToast } = useToast();
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [filter, setFilter] = useState('');
 
@@ -37,7 +38,7 @@ export default function ExpensesPage() {
                             Download PDF
                         </button>
                         <button
-                            onClick={() => setIsModalOpen(true)}
+                            onClick={() => setIsAddModalOpen(true)}
                             className="bg-emerald-600 hover:bg-emerald-500 text-white h-12 px-6 rounded-xl font-bold transition-all shadow-lg shadow-emerald-600/20 flex items-center gap-2"
                         >
                             <Plus className="w-5 h-5" />
