@@ -14,7 +14,7 @@ export function Navbar() {
         { name: 'Dashboard', href: '/', icon: LayoutDashboard },
         { name: 'Expenses', href: '/expenses', icon: Receipt },
         { name: 'Family', href: '/family', icon: Users },
-        { name: 'Settings', href: '/settings', icon: Settings },
+        ...(currentUser?.role === 'ADMIN' ? [{ name: 'Settings', href: '/settings', icon: Settings }] : []),
     ];
 
     return (
