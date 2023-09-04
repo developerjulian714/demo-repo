@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { useToast } from '@/contexts/ToastContext';
+import { suggestCategory } from '@/lib/ai-service';
 import { X, Check, Receipt, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Role } from '@/types';
@@ -94,8 +95,13 @@ export function AddExpenseModal({ isOpen, onClose }: AddExpenseModalProps) {
                             <button
                                 type="button"
                                 onClick={() => {
-                                    setCategory('Groceries'); // Mock AI logic
-                                    showToast('AI suggests: Groceries 🧠', 'INFO');
+                                    if (!description) {
+                                        showToast('Please enter a description first! ✍️', 'INFO');
+                                        return;
+                                    }
+                                    const suggested = suggestCategory(description);
+                                    setCategory(suggested);
+                                    showToast(`AI suggests: ${suggested} 🧠`, 'INFO');
                                 }}
                                 className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-tighter text-amber-500 bg-amber-500/10 px-2 py-1 rounded-lg border border-amber-500/20 hover:bg-amber-500/20 transition-all active:scale-95"
                             >
