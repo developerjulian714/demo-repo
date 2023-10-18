@@ -29,6 +29,18 @@ export function AddExpenseModal({ isOpen, onClose }: AddExpenseModalProps) {
 
     const members = activeFamily?.members || [];
 
+    const handleAICategorize = () => {
+        if (!description) {
+            showToast('Please enter a description first! ✍️', 'INFO');
+            return;
+        }
+        const suggested = suggestCategory(description);
+        setCategory(suggested);
+        setIsSparkling(true);
+        setTimeout(() => setIsSparkling(false), 500);
+        showToast(`AI suggests: ${suggested} 🧠`, 'INFO');
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const numAmount = parseFloat(amount);
@@ -97,16 +109,11 @@ export function AddExpenseModal({ isOpen, onClose }: AddExpenseModalProps) {
                     <div className="space-y-3">
                         <div className="flex items-center justify-between ml-1">
                             <label className="text-xs font-semibold text-emerald-500/70 uppercase tracking-widest">Category</label>
-                            <button
+                            <motion.button
                                 type="button"
-                                onClick={() => {
-                                    if (!description) {
-                                        showToast('Please enter a description first! ✍️', 'INFO');
-                                        onClick = { handleAICategorize }
-                                        whileHover = {{ scale: 1.05 }
-                                    }
-                                    whileTap = {{ scale: 0.95 }
-                                }
+                                onClick={handleAICategorize}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
                                 animate={{
                                     boxShadow: ["0 0 0px rgba(16,185,129,0)", "0 0 15px rgba(16,185,129,0.3)", "0 0 0px rgba(16,185,129,0)"]
                                 }}
