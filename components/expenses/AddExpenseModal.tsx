@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { useToast } from '@/contexts/ToastContext';
-import { X, Receipt } from 'lucide-react';
+import { X, Check, Receipt } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Role } from '@/types';
 
@@ -54,6 +54,7 @@ export function AddExpenseModal({ isOpen, onClose }: AddExpenseModalProps) {
             splits: finalSplits
         }, finalSplits);
 
+        showToast('Expense added successfully! 🧾', 'SUCCESS');
         onClose();
         setAmount('');
         setDescription('');
