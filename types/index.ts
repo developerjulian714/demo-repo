@@ -46,3 +46,11 @@ export interface Budget {
     period: 'WEEKLY' | 'MONTHLY';
     createdAt: string;
 }
+
+export type ToastType = 'SUCCESS' | 'ERROR' | 'INFO';
+
+export interface Toast {
+    id: string;
+    message: string;
+    type: ToastType;
+}
