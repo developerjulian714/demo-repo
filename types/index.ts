@@ -42,5 +42,7 @@ export interface Budget {
     familyId: string;
     category: string;
     limit: number;
-    month: string; // YYYY-MM
+    spent: number;
+    period: 'WEEKLY' | 'MONTHLY';
+    createdAt: string;
 }
