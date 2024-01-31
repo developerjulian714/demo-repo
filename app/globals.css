@@ -61,6 +61,28 @@
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
 
+  --animate-sparkle: sparkle 0.5s ease-out;
+
+  @keyframes sparkle {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+      filter: brightness(1);
+    }
+
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+      filter: brightness(1.5);
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+      filter: brightness(1);
+    }
+  }
+
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
 
