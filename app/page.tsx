@@ -3,7 +3,8 @@
 import { useAppContext } from '@/contexts/AppContext';
 import { formatCurrency } from '@/lib/utils';
 import { Navbar } from '@/components/layout/Navbar';
-import { ArrowUpRight, TrendingUp, Wallet, CreditCard } from 'lucide-react';
+import { TrendingUp, Wallet, CreditCard } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Home() {
   const { expenses, budgets, currentUser } = useAppContext();
@@ -64,7 +65,9 @@ export default function Home() {
         <section>
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-semibold text-white/80">Recent Activity</h2>
-            <button className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors">View All</button>
+            <Link href="/expenses" className="text-sm text-emerald-400 hover:text-emerald-300 transition-colors font-bold">
+              View All
+            </Link>
           </div>
 
           <div className="space-y-4">
