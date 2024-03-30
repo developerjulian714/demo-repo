@@ -1,39 +1,39 @@
 @import "tailwindcss";
 
 :root {
-  --background: 240 10% 3.9%;
+  --background: 140 20% 2%;
   --foreground: 0 0% 98%;
 
-  --card: 240 10% 3.9%;
+  --card: 140 20% 3%;
   --card-foreground: 0 0% 98%;
 
-  --popover: 240 10% 3.9%;
+  --popover: 140 20% 3%;
   --popover-foreground: 0 0% 98%;
 
-  --primary: 263.4 70% 50.4%;
-  --primary-foreground: 210 40% 98%;
+  --primary: 142 70% 45%;
+  --primary-foreground: 144 70% 5%;
 
-  --secondary: 217.2 32.6% 17.5%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 140 15% 10%;
+  --secondary-foreground: 0 0% 98%;
 
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
+  --muted: 140 15% 15%;
+  --muted-foreground: 140 10% 65%;
 
-  --accent: 217.2 32.6% 17.5%;
-  --accent-foreground: 210 40% 98%;
+  --accent: 47 95% 55%;
+  --accent-foreground: 47 95% 5%;
 
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
 
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-  --ring: 263.4 70% 50.4%;
+  --border: 140 15% 12%;
+  --input: 140 15% 12%;
+  --ring: 142 70% 45%;
 
-  --radius: 0.75rem;
+  --radius: 1rem;
 
   /* Glassmorphism */
-  --glass-bg: rgba(10, 10, 10, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(2, 6, 4, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.05);
 }
 
 @theme inline {
