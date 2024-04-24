@@ -54,13 +54,15 @@ export function AddExpenseModal({ isOpen, onClose }: AddExpenseModalProps) {
             paidBy: currentUser?.id || '',
             date: new Date().toISOString(),
             familyId: activeFamily?.id || '',
-            splits: finalSplits
+            splits: finalSplits,
+            isRecurring
         }, finalSplits);
 
         showToast('Expense added successfully! 🧾', 'SUCCESS');
         onClose();
         setAmount('');
         setDescription('');
+        setIsRecurring(false);
     };
 
     return (
