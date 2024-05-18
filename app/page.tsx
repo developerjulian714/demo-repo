@@ -6,7 +6,7 @@ import { formatCurrency } from '@/lib/utils';
 import { Navbar } from '@/components/layout/Navbar';
 import { BudgetSetupModal } from '@/components/budgets/BudgetSetupModal';
 import { SpendingChart } from '@/components/insights/SpendingChart';
-import { TrendingUp, Wallet, CreditCard, Plus } from 'lucide-react';
+import { TrendingUp, Wallet, CreditCard, Plus, RefreshCw } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
@@ -90,8 +90,16 @@ export default function Home() {
                   <div className="h-12 w-12 rounded-xl bg-gray-900/50 flex items-center justify-center text-2xl border border-white/10 group-hover:border-indigo-500/50 transition-colors">
                     🛒
                   </div>
-                  <div>
-                    <h4 className="font-medium text-white group-hover:text-indigo-300 transition-colors">{expense.description}</h4>
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-medium text-white group-hover:text-emerald-300 transition-colors">{expense.description}</h4>
+                      {expense.isRecurring && (
+                        <span className="flex items-center gap-1 text-[8px] font-black bg-amber-500/10 text-amber-500 px-1.5 py-0.5 rounded-full border border-amber-500/20 uppercase tracking-tighter">
+                          <RefreshCw className="w-2 h-2" />
+                          Recurring
+                        </span>
+                      )}
+                    </div>
                     <p className="text-xs text-muted-foreground">{expense.category} • {new Date(expense.date).toLocaleDateString()}</p>
                   </div>
                 </div>
