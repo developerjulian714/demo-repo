@@ -158,3 +158,4 @@ body {
   backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
 }/* Mobile Optimizations */
+.family-grid { grid-template-columns: 1fr; }
