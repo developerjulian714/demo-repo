@@ -12,6 +12,7 @@ import Link from 'next/link';
 export default function Home() {
   const { expenses, budgets, currentUser } = useAppContext();
   const [isBudgetModalOpen, setIsBudgetModalOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   // Calculate stats
   const totalSpent = expenses.reduce((acc, curr) => acc + curr.amount, 0);
@@ -77,38 +78,70 @@ export default function Home() {
         {/* Recent Activity */}
         <section>
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-white/80">Recent Activity</h2>
-            <Link href="/expenses" className="text-sm text-emerald-400 hover:text-emerald-300 transition-colors font-bold">
+            <h3 className="text-xl font-bold text-white tracking-tight">Recent Activity</h3>
+            <Link href="/expenses" className="text-xs font-bold text-emerald-500 hover:text-emerald-400 transition-colors uppercase tracking-widest">
               View All
             </Link>
           </div>
 
-          <div className="space-y-4">
-            {expenses.slice(0, 5).map((expense) => (
-              <div key={expense.id} className="p-4 rounded-2xl glass border border-white/5 flex items-center justify-between hover:bg-white/5 transition-colors cursor-pointer group">
-                <div className="flex items-center gap-4">
-                  <div className="h-12 w-12 rounded-xl bg-gray-900/50 flex items-center justify-center text-2xl border border-white/10 group-hover:border-indigo-500/50 transition-colors">
-                    🛒
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <div className="flex items-center gap-2">
-                      <h4 className="font-medium text-white group-hover:text-emerald-300 transition-colors">{expense.description}</h4>
-                      {expense.isRecurring && (
-                        <span className="flex items-center gap-1 text-[8px] font-black bg-amber-500/10 text-amber-500 px-1.5 py-0.5 rounded-full border border-amber-500/20 uppercase tracking-tighter">
-                          <RefreshCw className="w-2 h-2" />
-                          Recurring
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-xs text-muted-foreground">{expense.category} • {new Date(expense.date).toLocaleDateString()}</p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <p className="font-bold text-white mb-0.5">{formatCurrency(expense.amount)}</p>
-                  <p className="text-xs text-muted-foreground">Paid by {expense.paidBy === currentUser?.id ? 'You' : 'Others'}</p>
-                </div>
-              </div>
+          {/* Category Filter */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-4 scrollbar-hide mb-2">
+            <button
+              onClick={() => setSelectedCategory(null)}
+              className={cn(
+                "whitespace-nowrap px-4 py-2 rounded-xl text-xs font-bold border transition-all duration-300",
+                selectedCategory === null
+                  ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-400"
+                  : "bg-white/5 border-white/5 text-muted-foreground hover:border-white/10"
+              )}
+            >
+              All
+            </button>
+            {Array.from(new Set(expenses.map(e => e.category))).slice(0, 5).map(cat => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={cn(
+                  "whitespace-nowrap px-4 py-2 rounded-xl text-xs font-bold border transition-all duration-300",
+                  selectedCategory === cat
+                    ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-400"
+                    : "bg-white/5 border-white/5 text-muted-foreground hover:border-white/10"
+                )}
+              >
+                {cat}
+              </button>
             ))}
+          </div>
+
+          <div className="space-y-4">
+            {expenses
+              .filter(e => !selectedCategory || e.category === selectedCategory)
+              .slice(0, 5)
+              .map((expense) => (
+                <div key={expense.id} className="p-4 rounded-2xl glass border border-white/5 flex items-center justify-between hover:bg-white/5 transition-colors cursor-pointer group">
+                  <div className="flex items-center gap-4">
+                    <div className="h-12 w-12 rounded-xl bg-gray-900/50 flex items-center justify-center text-2xl border border-white/10 group-hover:border-indigo-500/50 transition-colors">
+                      🛒
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <div className="flex items-center gap-2">
+                        <h4 className="font-medium text-white group-hover:text-emerald-300 transition-colors">{expense.description}</h4>
+                        {expense.isRecurring && (
+                          <span className="flex items-center gap-1 text-[8px] font-black bg-amber-500/10 text-amber-500 px-1.5 py-0.5 rounded-full border border-amber-500/20 uppercase tracking-tighter">
+                            <RefreshCw className="w-2 h-2" />
+                            Recurring
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs text-muted-foreground">{expense.category} • {new Date(expense.date).toLocaleDateString()}</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-bold text-white mb-0.5">{formatCurrency(expense.amount)}</p>
+                    <p className="text-xs text-muted-foreground">Paid by {expense.paidBy === currentUser?.id ? 'You' : 'Others'}</p>
+                  </div>
+                </div>
+              ))}
           </div>
         </section>
       </main>
