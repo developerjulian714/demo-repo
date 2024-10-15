@@ -12,3 +12,4 @@ export function formatCurrency(amount: number) {
         maximumFractionDigits: 0,
     }).format(amount);
 }
+// Security updates
