@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useAppContext } from '@/contexts/AppContext';
 import { formatCurrency } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { Navbar } from '@/components/layout/Navbar';
 import { BudgetSetupModal } from '@/components/budgets/BudgetSetupModal';
 import { SpendingChart } from '@/components/insights/SpendingChart';
