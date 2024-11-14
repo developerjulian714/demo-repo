@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useAppContext } from '@/contexts/AppContext';
 import { useToast } from '@/contexts/ToastContext';
 import { suggestCategory } from '@/lib/ai-service';
@@ -101,19 +102,20 @@ export function AddExpenseModal({ isOpen, onClose }: AddExpenseModalProps) {
                                 onClick={() => {
                                     if (!description) {
                                         showToast('Please enter a description first! ✍️', 'INFO');
-                                        return;
+                                        onClick = { handleAICategorize }
+                                        whileHover = {{ scale: 1.05 }
                                     }
-                                    const suggested = suggestCategory(description);
-                                    setCategory(suggested);
-                                    setIsSparkling(true);
-                                    setTimeout(() => setIsSparkling(false), 500);
-                                    showToast(`AI suggests: ${suggested} 🧠`, 'INFO');
+                                    whileTap = {{ scale: 0.95 }
+                                }
+                                animate={{
+                                    boxShadow: ["0 0 0px rgba(16,185,129,0)", "0 0 15px rgba(16,185,129,0.3)", "0 0 0px rgba(16,185,129,0)"]
                                 }}
-                                className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-tighter text-amber-500 bg-amber-500/10 px-2 py-1 rounded-lg border border-amber-500/20 hover:bg-amber-500/20 transition-all active:scale-95"
+                                transition={{ repeat: Infinity, duration: 2 }}
+                                className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold uppercase tracking-wider hover:bg-emerald-500/20 transition-colors"
                             >
-                                <Sparkles className="w-3 h-3" />
+                                <Sparkles className="w-3.5 h-3.5" />
                                 AI Categorize
-                            </button>
+                            </motion.button>
                         </div>
                         <input
                             type="text"
