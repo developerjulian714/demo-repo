@@ -13,3 +13,4 @@ export function formatCurrency(amount: number) {
     }).format(amount);
 }
 // Security updates
+// Refactored to reduce allocation
