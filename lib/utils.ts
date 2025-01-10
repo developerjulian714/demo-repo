@@ -14,3 +14,4 @@ export function formatCurrency(amount: number) {
 }
 // Security updates
 // Refactored to reduce allocation
+// Year-end tax helpers
