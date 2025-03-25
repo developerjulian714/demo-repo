@@ -184,3 +184,4 @@ export function AddExpenseModal({ isOpen, onClose }: AddExpenseModalProps) {
         </div>
     );
 }
+// Fix edge case in splits
