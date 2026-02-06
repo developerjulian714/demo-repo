@@ -38,3 +38,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - Analytics integration in progress
 - Mobile UI improvements
 - Cleaned up legacy utils
+- Fixed various bugs
+- Backup state
