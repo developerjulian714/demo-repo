@@ -5,10 +5,12 @@ import { useAppContext } from '@/contexts/AppContext';
 import { formatCurrency } from '@/lib/utils';
 import { Navbar } from '@/components/layout/Navbar';
 import { AddExpenseModal } from '@/components/expenses/AddExpenseModal';
-import { Plus, Search, Filter, RefreshCw } from 'lucide-react';
+import { useToast } from '@/contexts/ToastContext';
+import { Plus, Search, Filter, RefreshCw, FileText, FileSpreadsheet } from 'lucide-react';
 
 export default function ExpensesPage() {
     const { expenses, currentUser } = useAppContext();
+    const { showToast } = useToast();
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [filter, setFilter] = useState('');
 
@@ -22,15 +24,34 @@ export default function ExpensesPage() {
             <Navbar />
 
             <main className="container mx-auto px-4 pt-24 space-y-6">
-                <div className="flex items-center justify-between">
-                    <h1 className="text-3xl font-bold text-white">Expenses</h1>
-                    <button
-                        onClick={() => setIsAddModalOpen(true)}
-                        className="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-3 rounded-2xl flex items-center gap-2 font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] active:scale-95"
-                    >
-                        <Plus className="w-5 h-5 stroke-3" />
-                        Add Expense
-                    </button>
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+                    <div>
+                        <h1 className="text-4xl font-bold text-white tracking-tight mb-2">Expenses</h1>
+                        <p className="text-muted-foreground">Track and manage your family spending</p>
+                    </div>
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={() => showToast('Generating PDF Report... 📄', 'INFO')}
+                            className="bg-white/5 border border-white/10 text-white h-12 px-6 rounded-xl font-bold hover:bg-white/10 transition-all flex items-center gap-2"
+                        >
+                            <FileText className="w-4 h-4" />
+                            PDF
+                        </button>
+                        <button
+                            onClick={() => showToast('Exporting to Excel... 📊', 'INFO')}
+                            className="bg-white/5 border border-white/10 text-white h-12 px-6 rounded-xl font-bold hover:bg-white/10 transition-all flex items-center gap-2"
+                        >
+                            <FileSpreadsheet className="w-4 h-4" />
+                            Excel
+                        </button>
+                        <button
+                            onClick={() => setIsAddModalOpen(true)}
+                            className="bg-emerald-600 hover:bg-emerald-500 text-white h-12 px-6 rounded-xl font-bold transition-all shadow-lg shadow-emerald-600/20 flex items-center gap-2"
+                        >
+                            <Plus className="w-5 h-5" />
+                            Add Expense
+                        </button>
+                    </div>
                 </div>
 
                 {/* Search Bar */}

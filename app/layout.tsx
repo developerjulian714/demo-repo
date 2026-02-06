@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { AppProvider } from '@/contexts/AppContext';
 import { ToastProvider } from '@/contexts/ToastContext';
 import { ToastContainer } from '@/components/ui/Toast';
+import { PageTransition } from '@/components/ui/PageTransition';
 import NextTopLoader from 'nextjs-toploader';
 
 const outfit = Outfit({
@@ -38,7 +39,9 @@ export default function RootLayout({
         />
         <AppProvider>
           <ToastProvider>
-            {children}
+            <PageTransition>
+              {children}
+            </PageTransition>
             <ToastContainer />
           </ToastProvider>
         </AppProvider>
